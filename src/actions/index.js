@@ -1,4 +1,4 @@
-import jsonld from 'jsonld';
+import jsonld from 'jsonld'
 
 // export const REQUEST_POSTS = 'REQUEST_POSTS'
 // export const RECEIVE_POSTS = 'RECEIVE_POSTS'

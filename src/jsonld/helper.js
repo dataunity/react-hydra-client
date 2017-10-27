@@ -5,37 +5,37 @@ export function dearrayify (obj) {
     // If a item is wrapped in an array, remove the array, otherwise
     // just return the item
     if (Array.isArray(obj) && obj.length !== 1) {
-        throw new Error("dearrayify expected exactly one item in the array");
+        throw new Error("dearrayify expected exactly one item in the array")
     }
-    return Array.isArray(obj) ? obj[0] : obj;
+    return Array.isArray(obj) ? obj[0] : obj
 }
 
 export function getValue (subject, property, defaultVal) {
     let vals = jsonld.getValues(subject, property),
         val = null,
-        defaultValue = null;
+        defaultValue = null
     if (typeof defaultVal !== 'undefined') {
-        defaultValue = defaultVal;
+        defaultValue = defaultVal
     }
     if (vals.length < 1) {
-        return defaultValue;
+        return defaultValue
     }
-    val = vals[0];
-    return val;
+    val = vals[0]
+    return val
 }
 
 // Gets a literal value from subject using the property
 export function getLiteralValue (subject, property, defaultVal) {
-    let val = getValue(subject, property, defaultVal);
+    let val = getValue(subject, property, defaultVal)
     if (val && typeof val === 'object' && jsonld.hasProperty(val, "@value")) {
         val = val["@value"]
     }
-    return val;
+    return val
 }
 
 // Gets the rdfs:label for an object
 export function getLabel (obj) {
-    return getLiteralValue(obj, RDFSNamespace.label);
+    return getLiteralValue(obj, RDFSNamespace.label)
 }
 
 // Gets the JSON-LD @id from an object

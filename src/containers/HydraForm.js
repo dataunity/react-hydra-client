@@ -20,8 +20,8 @@ const data = {
   employed: true,
   favoriteColor: 'Blue',
   bio: 'Born to write amazing Redux code.',
-};
-const colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
+}
+const colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet']
 
 class HydraForm extends Component {
 

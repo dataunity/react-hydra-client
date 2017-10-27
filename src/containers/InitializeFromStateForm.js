@@ -1,9 +1,9 @@
 // Test for redux form
 
-import React from 'react';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import { load as loadAccount } from './account';
+import React from 'react'
+import { connect } from 'react-redux'
+import { Field, reduxForm } from 'redux-form'
+import { load as loadAccount } from './account'
 
 const data = {
   // used to populate "account" reducer when "Load" is clicked
@@ -14,11 +14,11 @@ const data = {
   employed: true,
   favoriteColor: 'Blue',
   bio: 'Born to write amazing Redux code.',
-};
-const colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet'];
+}
+const colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet']
 
 let InitializeFromStateForm = props => {
-  const { handleSubmit, load, pristine, reset, submitting } = props;
+  const { handleSubmit, load, pristine, reset, submitting } = props
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -104,13 +104,13 @@ let InitializeFromStateForm = props => {
         </button>
       </div>
     </form>
-  );
-};
+  )
+}
 
 // Decorate with reduxForm(). It will read the initialValues prop provided by connect()
 InitializeFromStateForm = reduxForm({
   form: 'initializeFromState', // a unique identifier for this form
-})(InitializeFromStateForm);
+})(InitializeFromStateForm)
 
 // You have to connect() to any reducers that you wish to connect to yourself
 InitializeFromStateForm = connect(
@@ -118,6 +118,6 @@ InitializeFromStateForm = connect(
     initialValues: state.account.data, // pull initial values from account reducer
   }),
   { load: loadAccount }, // bind account loading action creator
-)(InitializeFromStateForm);
+)(InitializeFromStateForm)
 
-export default InitializeFromStateForm;
+export default InitializeFromStateForm

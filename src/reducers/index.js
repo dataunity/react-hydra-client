@@ -17,7 +17,7 @@ import {
 
 // Testing redux-form
 import { reducer as reduxFormReducer } from 'redux-form'
-import account from '../containers/account';
+import account from '../containers/account'
 
 // const selectedReddit = (state = 'reactjs', action) => {
 //   switch (action.type) {

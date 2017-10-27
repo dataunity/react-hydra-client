@@ -1,6 +1,6 @@
 // Taken from SepiaGroup comment on https://github.com/erikras/redux-form/issues/71#issuecomment-255028641
-import React from 'react';
-import Dropzone from 'react-dropzone';
+import React from 'react'
+import Dropzone from 'react-dropzone'
 
 const ReduxFormDropzone = (field) => {
     let {
@@ -8,15 +8,15 @@ const ReduxFormDropzone = (field) => {
         meta,
         dropzoneOnDrop,
         ...props
-    } = field;
-    const files = field.input.value;
+    } = field
+    const files = field.input.value
 
     return (
         <div>
             <Dropzone
                 onDrop={(acceptedFiles, rejectedFiles, e) => {
-                    field.input.onChange(acceptedFiles);
-                    field.dropzoneOnDrop && field.dropzoneOnDrop(acceptedFiles, rejectedFiles, e);
+                    field.input.onChange(acceptedFiles)
+                    field.dropzoneOnDrop && field.dropzoneOnDrop(acceptedFiles, rejectedFiles, e)
                 }}
                 {...props}>
                 <div>Drop a file here, or click to select files to upload.</div>
@@ -30,7 +30,7 @@ const ReduxFormDropzone = (field) => {
                 </ul>
             )}
         </div>
-    );
+    )
 }
 
-export default ReduxFormDropzone;
+export default ReduxFormDropzone

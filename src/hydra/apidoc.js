@@ -37,7 +37,7 @@ export const findSupportedPropertyInClass = function (cls, propType) {
         return apiDocSuppProp
     }
 
-    suppProps = cls[HydraNamespace.supportedProperty];
+    suppProps = cls[HydraNamespace.supportedProperty]
     if (suppProps) {
         for(let suppProp of suppProps) {
             typesToCheck = Array.isArray(propType) ? propType : [propType]

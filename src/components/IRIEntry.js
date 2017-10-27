@@ -5,7 +5,7 @@ export default class IRIEntry extends Component {
 	constructor(props) {
 		super(props)
 		// this.state = {value: 'http://localhost:8080/csvw/table-summaries'}
-		this.state = {value: this.props.value};
+		this.state = {value: this.props.value}
 
 		this.handleChange = this.handleChange.bind(this)
 		this.handleSubmit = this.handleSubmit.bind(this)
@@ -16,7 +16,7 @@ export default class IRIEntry extends Component {
 	}
 
 	handleSubmit(event) {
-		event.preventDefault();
+		event.preventDefault()
 		this.props.onSubmit(this.state.value)
 	}
 
@@ -37,7 +37,7 @@ export default class IRIEntry extends Component {
 				</label>
 				<input type="submit" value="Submit" />
 			</form>
-		);
+		)
 	}
 }
 

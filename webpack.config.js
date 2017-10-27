@@ -1,39 +1,64 @@
-var CopyWebpackPlugin = require('copy-webpack-plugin')
-var path = require('path')
+'use strict'
+var webpack = require('webpack')
+var LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
 
-module.exports = {
-  entry: path.join(__dirname, 'src/docs/index.js'),
-  devtool: 'source-map',
+var env = process.env.NODE_ENV
 
-  output: {
-    path: path.join(__dirname, 'dist/docs'),
-    filename: 'bundle.js',
+var reactExternal = {
+  root: 'React',
+  commonjs2: 'react',
+  commonjs: 'react',
+  amd: 'react'
+}
+
+var reduxExternal = {
+  root: 'Redux',
+  commonjs2: 'redux',
+  commonjs: 'redux',
+  amd: 'redux'
+}
+
+var reactReduxExternal = {
+  root: 'ReactRedux',
+  commonjs2: 'react-redux',
+  commonjs: 'react-redux',
+  amd: 'react-redux'
+}
+
+var config = {
+  externals: {
+    react: reactExternal,
+    redux: reduxExternal,
+    'react-redux': reactReduxExternal
   },
-
   module: {
     loaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader',
-      },
-      {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader',
-      },
-    ],
+      { test: /\.js$/, loaders: ['babel-loader'], exclude: /node_modules/ }
+    ]
   },
-
-  devServer: {
-    contentBase: path.join(__dirname, 'dist/docs'),
-    host: 'localhost',
-    inline: true,
-    info: false,
+  output: {
+    library: 'ReduxForm',
+    libraryTarget: 'umd'
   },
-
   plugins: [
-    new CopyWebpackPlugin([
-      { from: path.join(__dirname, 'src/docs/index.html') },
-    ]),
-  ],
+    new LodashModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(env)
+    })
+  ]
 }
+
+if (env === 'production') {
+  config.plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        pure_getters: true,
+        unsafe: true,
+        unsafe_comps: true,
+        warnings: false
+      }
+    })
+  )
+}
+
+module.exports = config

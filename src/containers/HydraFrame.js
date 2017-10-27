@@ -68,7 +68,7 @@ class HydraFrame extends Component {
     const hydraCollectionIRIs = [HydraNamespace.Collection, HydraNamespace.PagedCollection]
 
     if (this.isHydraDocEmpty()) {
-      return false;
+      return false
     }
 
     // Check if Hydra doc is a collection or if it's sub class of collection

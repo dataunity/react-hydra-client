@@ -1,2 +1,2 @@
-dist/
-**/*bundle.js
+webpack.config*.js
+node_modules
