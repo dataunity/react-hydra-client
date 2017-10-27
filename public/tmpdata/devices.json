@@ -1,0 +1,139 @@
+{
+  "@context": {
+    "mediaType": {
+      "@id": "td:hasMediaType"
+    },
+    "returns": {
+      "@type": "@id",
+      "@id": "hydra:returns"
+    },
+    "operation": "hydra:operation",
+    "base": {
+      "@type": "@id",
+      "@id": "td:baseURI"
+    },
+    "child": "td:isChildOf",
+    "DeviceSummaryPagedCollection": "http://localhost:8080/hydra/api-doc#DeviceSummaryPagedCollection",
+    "writeonly": "hydra:writeonly",
+    "totalItems": "http://www.w3.org/ns/hydra/core#totalItems",
+    "description": "rdfs:comment",
+    "expects": {
+      "@type": "@id",
+      "@id": "hydra:expects"
+    },
+    "previousPage": "http://www.w3.org/ns/hydra/core#previousPage",
+    "firstPage": "http://www.w3.org/ns/hydra/core#firstPage",
+    "hydraext": "http://dataunity.org/ns/hydra-ext#",
+    "lastPage": "http://www.w3.org/ns/hydra/core#lastPage",
+    "vocab": "http://localhost:8080/hydra/api-doc#",
+    "Property": "td:Property",
+    "topic": "tdext:topic",
+    "code": "hydra:statusCode",
+    "dct": "http://purl.org/dc/terms/",
+    "interaction": {
+      "@type": "@id",
+      "@container": "@set",
+      "@id": "td:providesInteractionPattern"
+    },
+    "writable": {
+      "@type": "xsd:boolean",
+      "@id": "td:isWritable"
+    },
+    "Event": "td:Event",
+    "DeviceSimpleMQTT": "vocab:DeviceSimpleMQTT",
+    "tdext": "http://dataunity.org/ns/w3c-wot-td#",
+    "name": "td:name",
+    "Action": "td:Action",
+    "method": "hydra:method",
+    "property": "hydra:property",
+    "readonly": "hydra:readonly",
+    "Thing": "td:Thing",
+    "possibleValue": "hydraext:possibleValue",
+    "supportedProperty": "hydra:supportedProperty",
+    "statusCodes": "hydra:statusCodes",
+    "domain": {
+      "@type": "@id",
+      "@id": "rdfs:domain"
+    },
+    "label": "rdfs:label",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "inputData": {
+      "@id": "td:hasInputData"
+    },
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "security": "td:implementsSecurity",
+    "supportedClass": "hydra:supportedClass",
+    "Collection": "http://www.w3.org/ns/hydra/core#Collection",
+    "ApiDocumentation": "hydra:ApiDocumentation",
+    "Link": "td:Link",
+    "supportedOperation": "hydra:supportedOperation",
+    "range": {
+      "@type": "@id",
+      "@id": "rdfs:range"
+    },
+    "PagedCollection": "http://www.w3.org/ns/hydra/core#PagedCollection",
+    "DeviceSummary": "http://localhost:8080/hydra/api-doc#DeviceSummary",
+    "Interaction": "td:Interaction",
+    "hydra": "http://www.w3.org/ns/hydra/core#",
+    "td": "http://iot.linkeddata.es/def/wot#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "subClassOf": {
+      "@type": "@id",
+      "@id": "rdfs:subClassOf"
+    },
+    "memberValueProperty": "hydraext:memberValueProperty",
+    "nextPage": "http://www.w3.org/ns/hydra/core#nextPage",
+    "required": {
+      "@type": "xsd:boolean",
+      "@id": "td:isRequired"
+    },
+    "link": {
+      "@type": "@id",
+      "@id": "td:isAccessibleThrough"
+    },
+    "acl": "http://www.w3.org/ns/auth/acl#",
+    "member": "http://www.w3.org/ns/hydra/core#member",
+    "memberLabelProperty": "hydraext:memberLabelProperty",
+    "valuesPagedCollection": {
+      "@type": "@id",
+      "@id": "hydraext:valuesPagedCollection"
+    },
+    "outputData": {
+      "@id": "td:hasOutputData"
+    },
+    "href": {
+      "@type": "@id",
+      "@id": "td:href"
+    },
+    "valuesConstraint": "hydraext:valuesConstraint"
+  },
+  "@type": "DeviceSummaryPagedCollection",
+  "nextPage": "http://localhost:8080/wot/device-summaries?page=2",
+  "firstPage": "http://localhost:8080/wot/device-summaries?page=1",
+  "itemsPerPage": 10,
+  "operation": [
+    {
+      "method": "POST",
+      "@type": "http://schema.org/AddAction",
+      "label": "New",
+      "statusCodes": [
+
+      ],
+      "expects": "vocab:DeviceSimpleMQTT"
+    }
+  ],
+  "member": [
+    {
+      "@type": "DeviceSummary",
+      "name": "F0:26:AD:98:23:98",
+      "@id": "http://localhost:8080/wot/things/137faf38-5d69-4fe4-b8b0-be9ff84e89f3",
+      "vocab:deviceDashboardLink": {"@id": "http://localhost:8080/wot/things/137faf38-5d69-4fe4-b8b0-be9ff84e89f3"}
+    },
+    {
+      "@type": "DeviceSummary",
+      "name": "F0:26:AD:98:23:99",
+      "@id": "http://localhost:8080/wot/things/ffe02309-c227-453a-b73e-7d8b266e074a"
+    }
+  ],
+  "@id": "http://localhost:8080/wot/device-summaries"
+}
