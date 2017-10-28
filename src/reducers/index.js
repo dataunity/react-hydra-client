@@ -19,6 +19,11 @@ import {
 import { reducer as reduxFormReducer } from 'redux-form'
 import account from '../containers/account'
 
+// Whether to run the interface in advanced mode (with extra debug info)
+const advancedMode = (state = false, action) => {
+  return state
+}
+
 const entryPoint = (state = '', action) => {
   return state
 }
@@ -160,6 +165,7 @@ const overrideHydraDocByClassComponents = (state = {}, action) => {
 }
 
 const rootReducer = combineReducers({
+  advancedMode,
   // postsByReddit,
   // selectedReddit,
 

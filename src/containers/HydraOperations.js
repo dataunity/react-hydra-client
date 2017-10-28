@@ -35,6 +35,7 @@ class HydraOperations extends Component {
 	}
 
 	createOpElement(op, val, index) {
+		const { advancedMode } = this.props
 		const formMethod = getLiteralValue(op, HydraNamespace.method, "")
 
 		if (!val || !val.hasOwnProperty("@id")) {
@@ -44,14 +45,20 @@ class HydraOperations extends Component {
 
 		switch (formMethod) {
 			case "GET":
-				return <span key={index}><a onClick={this.handleGETClick} href={url}>{getLabel(op)}</a> (GET)</span>
+				return <span key={index}>
+						<a onClick={this.handleGETClick} href={url}>{getLabel(op)}</a>
+						{advancedMode && ' (GET)'}
+					</span>
 				// return (
 				// 	<div key={i}>
 				// 		<span>GET Op {getLabel(op)}</span>
 				// 		<span onClick={e => this.handleIriChange(e)}>Click</span>
 				// 	</div>)
 			case "POST":
-				return <span key={index}><a onClick={e => {e.preventDefault(); this.handlePOSTClick(formMethod, url, getIdValue(op[HydraNamespace.expects]))}} href={url}>{getLabel(op)}</a> (POST)</span>
+				return <span key={index}>
+					<a onClick={e => {e.preventDefault(); this.handlePOSTClick(formMethod, url, getIdValue(op[HydraNamespace.expects]))}} href={url}>{getLabel(op)}</a>
+					{advancedMode && ' (POST)'}
+				  </span>
 			default:
 				return <span>Unknown Operation</span>
 		}
@@ -75,15 +82,18 @@ HydraOperations.propTypes = {
 	val: PropTypes.object,	// The value of the Hydra Doc property
 	supportedProperty: PropTypes.object,
 	frameId: PropTypes.string.isRequired,
-	dispatch: PropTypes.func.isRequired
+	dispatch: PropTypes.func.isRequired,
+	advancedMode: PropTypes.bool.isRequired
 }
 
 function mapStateToProps(state) {
-	const { hydraAPIDoc } = state.hydra
+	const { hydraAPIDoc,
+	 	advancedMode } = state.hydra
 	const apiDoc = hydraAPIDoc.content
 
 	return {
-		apiDoc
+		apiDoc,
+		advancedMode
 	}
 }
 

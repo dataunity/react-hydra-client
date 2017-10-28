@@ -77,7 +77,15 @@ class HydraFrame extends Component {
   }
 
   render() {
-    const { iri, isFetching, lastUpdated, hydraDoc, frameId, apiDocClass, apiDoc, defaultIri } = this.props
+    const { iri,
+        isFetching,
+        lastUpdated,
+        hydraDoc,
+        frameId,
+        apiDocClass,
+        apiDoc,
+        defaultIri,
+        advancedMode } = this.props
     const isEmpty = this.isHydraDocEmpty()
     const isCollectn = this.isCollection()
     if (!isEmpty && apiDocClass == null) {
@@ -87,21 +95,25 @@ class HydraFrame extends Component {
     return (
       <div>
         <div><a href="#" onClick={this.handleHomeClick}>Home</a> ({frameId} frame)</div>
-        <IRIEntry value={iri}
-          onSubmit={this.handleIRISubmit} />
-        <p>
-          {lastUpdated &&
-            <span>
-              Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
-              {' '}
-            </span>
-          }
-          {!isFetching &&
-            <button onClick={this.handleRefreshClick}>
-              Refresh
-            </button>
-          }
-        </p>
+        {advancedMode &&
+            <div>
+                <IRIEntry value={iri}
+                  onSubmit={this.handleIRISubmit} />
+                <p>
+                  {lastUpdated &&
+                    <span>
+                      Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
+                      {' '}
+                    </span>
+                  }
+                  {!isFetching &&
+                    <button onClick={this.handleRefreshClick}>
+                      Refresh
+                    </button>
+                  }
+                </p>
+            </div>
+        }
         <div>
           {isEmpty
             ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
@@ -125,12 +137,13 @@ HydraFrame.propTypes = {
   hydraDoc: PropTypes.object,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  advancedMode: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = (state, ownProps) => {
   const { frameId, defaultIri } = ownProps
-  const { hydraDocByFrameId, currentIRIForFrame } = state.hydra
+  const { hydraDocByFrameId, currentIRIForFrame, advancedMode } = state.hydra
 
   const {
     isFetching,
@@ -149,7 +162,8 @@ const mapStateToProps = (state, ownProps) => {
     apiDocClass,
     isFetching,
     lastUpdated,
-    defaultIri
+    defaultIri,
+    advancedMode
   }
 }
 

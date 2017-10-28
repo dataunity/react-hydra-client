@@ -60,32 +60,42 @@ class HydraApp extends Component {
   }
 
   render() {
-    const { currentHydraAPIDoc, isFetching, lastUpdated, apiDoc, entryPoint } = this.props
+    const { currentHydraAPIDoc,
+        isFetching,
+        lastUpdated,
+        apiDoc,
+        entryPoint,
+        advancedMode } = this.props
     const isEmpty = !apiDoc["@type"]
 
     return (
       <div>
-        <IRIEntry value={currentHydraAPIDoc}
-          onSubmit={this.handleIRISubmit} />
-        <p><button onClick={this.handleDebugLogIn}>Debug Login</button></p>
-        <p>
-          {lastUpdated &&
-            <span>
-              API Doc Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
-              {' '}
-            </span>
-          }
-          {!isFetching &&
-            <button onClick={this.handleRefreshClick}>
-              Refresh
-            </button>
-          }
-        </p>
+        {advancedMode &&
+            <div>
+                <IRIEntry value={currentHydraAPIDoc}
+                  onSubmit={this.handleIRISubmit} />
+                <p><button onClick={this.handleDebugLogIn}>Debug Login</button></p>
+                <p>
+                  {lastUpdated &&
+                    <span>
+                      API Doc Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
+                      {' '}
+                    </span>
+                  }
+                  {!isFetching &&
+                    <button onClick={this.handleRefreshClick}>
+                      Refresh
+                    </button>
+                  }
+                </p>
+                <hr />
+            </div>
+        }
+
         <div>
           {isEmpty
             ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
             : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-                <hr />
                 <HydraFrame frameId="main" apiDoc={apiDoc} defaultIri={entryPoint} />
               </div>
           }
@@ -99,11 +109,15 @@ HydraApp.propTypes = {
   apiDoc: PropTypes.object.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  advancedMode: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = state => {
-  const { currentHydraAPIDoc, hydraAPIDoc, entryPoint } = state.hydra
+  const { currentHydraAPIDoc,
+      hydraAPIDoc,
+      entryPoint,
+      advancedMode } = state.hydra
   const {
     isFetching,
     lastUpdated,
@@ -118,7 +132,8 @@ const mapStateToProps = state => {
     currentHydraAPIDoc,
     apiDoc,
     isFetching,
-    lastUpdated
+    lastUpdated,
+    advancedMode
   }
 }
 

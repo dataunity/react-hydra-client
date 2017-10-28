@@ -177,7 +177,7 @@ HydraForm = reduxForm({
 // You have to connect() to any reducers that you wish to connect to yourself
 HydraForm = connect(
   state => ({
-    initialValues: state.account.data, // pull initial values from account reducer
+    initialValues: state.hydra.account.data, // pull initial values from account reducer
   }),
   { load: loadAccount }, // bind account loading action creator
 )(HydraForm)
