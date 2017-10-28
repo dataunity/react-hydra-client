@@ -13,7 +13,7 @@
       "@id": "td:baseURI"
     },
     "child": "td:isChildOf",
-    "DeviceSummaryPagedCollection": "http://localhost:8080/hydra/api-doc#DeviceSummaryPagedCollection",
+    "DeviceSummaryPagedCollection": "http://localhost:8079/hydra/api-doc#DeviceSummaryPagedCollection",
     "writeonly": "hydra:writeonly",
     "totalItems": "http://www.w3.org/ns/hydra/core#totalItems",
     "description": "rdfs:comment",
@@ -25,7 +25,7 @@
     "firstPage": "http://www.w3.org/ns/hydra/core#firstPage",
     "hydraext": "http://dataunity.org/ns/hydra-ext#",
     "lastPage": "http://www.w3.org/ns/hydra/core#lastPage",
-    "vocab": "http://localhost:8080/hydra/api-doc#",
+    "vocab": "http://localhost:8079/hydra/api-doc#",
     "Property": "td:Property",
     "topic": "tdext:topic",
     "code": "hydra:statusCode",
@@ -72,7 +72,7 @@
       "@id": "rdfs:range"
     },
     "PagedCollection": "http://www.w3.org/ns/hydra/core#PagedCollection",
-    "DeviceSummary": "http://localhost:8080/hydra/api-doc#DeviceSummary",
+    "DeviceSummary": "http://localhost:8079/hydra/api-doc#DeviceSummary",
     "Interaction": "td:Interaction",
     "hydra": "http://www.w3.org/ns/hydra/core#",
     "td": "http://iot.linkeddata.es/def/wot#",
@@ -108,8 +108,8 @@
     "valuesConstraint": "hydraext:valuesConstraint"
   },
   "@type": "DeviceSummaryPagedCollection",
-  "nextPage": "http://localhost:8080/wot/device-summaries?page=2",
-  "firstPage": "http://localhost:8080/wot/device-summaries?page=1",
+  "nextPage": "http://localhost:8079/wot/device-summaries?page=2",
+  "firstPage": "http://localhost:8079/wot/device-summaries?page=1",
   "itemsPerPage": 10,
   "operation": [
     {
@@ -126,14 +126,14 @@
     {
       "@type": "DeviceSummary",
       "name": "F0:26:AD:98:23:98",
-      "@id": "http://localhost:8080/wot/things/137faf38-5d69-4fe4-b8b0-be9ff84e89f3",
-      "vocab:deviceDashboardLink": {"@id": "http://localhost:8080/wot/things/137faf38-5d69-4fe4-b8b0-be9ff84e89f3"}
+      "@id": "http://localhost:8079/wot/things/137faf38-5d69-4fe4-b8b0-be9ff84e89f3",
+      "vocab:deviceDashboardLink": {"@id": "http://localhost:8079/wot/things/137faf38-5d69-4fe4-b8b0-be9ff84e89f3"}
     },
     {
       "@type": "DeviceSummary",
       "name": "F0:26:AD:98:23:99",
-      "@id": "http://localhost:8080/wot/things/ffe02309-c227-453a-b73e-7d8b266e074a"
+      "@id": "http://localhost:8079/wot/things/ffe02309-c227-453a-b73e-7d8b266e074a"
     }
   ],
-  "@id": "http://localhost:8080/wot/device-summaries"
+  "@id": "http://localhost:8079/wot/device-summaries"
 }

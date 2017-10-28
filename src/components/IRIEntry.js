@@ -4,7 +4,6 @@ import PropTypes from 'prop-types'
 export default class IRIEntry extends Component {
 	constructor(props) {
 		super(props)
-		// this.state = {value: 'http://localhost:8080/csvw/table-summaries'}
 		this.state = {value: this.props.value}
 
 		this.handleChange = this.handleChange.bind(this)

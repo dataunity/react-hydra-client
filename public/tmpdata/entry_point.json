@@ -1,9 +1,9 @@
 {
-  "device_summaries": "http://localhost:8080/wot/device-summaries",
-  "hydra_datatables": "http://localhost:8080/hydra/datatables",
-  "add_dataset": "http://localhost:8080/csvw/create-csvw-from-csv",
-  "hydra_datasets": "http://localhost:8080/hydra/dcat/datasets",
-  "datatable_select": "http://localhost:8080/dash/ggjs-builder-datatable",
+  "device_summaries": "http://localhost:8079/wot/device-summaries",
+  "hydra_datatables": "http://localhost:8079/hydra/datatables",
+  "add_dataset": "http://localhost:8079/csvw/create-csvw-from-csv",
+  "hydra_datasets": "http://localhost:8079/hydra/dcat/datasets",
+  "datatable_select": "http://localhost:8079/dash/ggjs-builder-datatable",
   "@type": "EntryPoint",
   "@context": {
     "device_summaries": {
@@ -27,7 +27,7 @@
       "@type": "@id",
       "@id": "vocab:EntryPoint/addDataset"
     },
-    "vocab": "http://localhost:8080/hydra/api-doc#",
+    "vocab": "http://localhost:8079/hydra/api-doc#",
     "EntryPoint": "vocab:EntryPoint",
     "hydra_datatables": {
       "@type": "@id",
@@ -38,6 +38,6 @@
       "@id": "vocab:EntryPoint/panelsummaries"
     }
   },
-  "csvw_datasets": "http://localhost:8080/csvw/table-summaries",
-  "panel_summaries": "http://localhost:8080/hydra/panelsummaries1"
+  "csvw_datasets": "http://localhost:8079/csvw/table-summaries",
+  "panel_summaries": "http://localhost:8079/hydra/panelsummaries1"
 }

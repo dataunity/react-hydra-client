@@ -122,10 +122,10 @@ function expandJsonld(json) {
 //   // Temp hack to keep development offline.
 //   // TODO: use iri instead
 //   switch (iri) {
-//     case 'http://localhost:8080/hydra/entrypoint':
+//     case 'http://localhost:8079/hydra/entrypoint':
 //       iri = '/tmpdata/entry_point.json'
 //       break
-//     case 'http://localhost:8080/csvw/table-summaries':
+//     case 'http://localhost:8079/csvw/table-summaries':
 //       iri = '/tmpdata/table_summaries.json'
 //       break
 //     default:
@@ -144,11 +144,12 @@ const fetchHydraAPIDoc = iri => dispatch => {
   // Temp hack to keep development offline.
   // TODO: use iri instead
   switch (iri) {
-    case 'http://localhost:8080/hydra/api-doc':
+    case 'http://localhost:8079/hydra/api-doc':
       iri = '/tmpdata/api_doc.json'
       break
     default:
-      throw new Error("Unknown Hydra API Doc IRI")
+      iri = iri
+      break
   }
 
   return fetch(iri)
@@ -254,13 +255,13 @@ const fetchDocForFrame = (frameId, iri) => dispatch => {
   // Temp hack to keep development offline.
   // TODO: use iri instead
   switch (iri) {
-    case 'http://localhost:8080/hydra/entrypoint':
+    case 'http://localhost:8079/hydra/entrypoint':
       iri = '/tmpdata/entry_point.json'
       break
-    case 'http://localhost:8080/csvw/table-summaries':
+    case 'http://localhost:8079/csvw/table-summaries':
       iri = '/tmpdata/table_summaries.json'
       break
-    case 'http://localhost:8080/wot/device-summaries':
+    case 'http://localhost:8079/wot/device-summaries':
         iri = '/tmpdata/devices.json'
         break
     default:

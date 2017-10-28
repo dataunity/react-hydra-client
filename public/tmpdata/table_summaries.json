@@ -1,5 +1,5 @@
 {
-  "@id": "http://localhost:8080csvw/table-summaries",
+  "@id": "http://localhost:8079/csvw/table-summaries",
   "@context": {
     "lineTerminators": "http://www.w3.org/ns/csvw#lineTerminators",
     "Dialect": "http://www.w3.org/ns/csvw#Dialect",
@@ -33,7 +33,7 @@
     "skipColumns": "http://www.w3.org/ns/csvw#skipColumns",
     "foreignKey": "http://www.w3.org/ns/csvw#foreignKey",
     "Cell": "http://www.w3.org/ns/csvw#Cell",
-    "vocab": "http://localhost:8080/hydra/api-doc#",
+    "vocab": "http://localhost:8079/hydra/api-doc#",
     "trim": "http://www.w3.org/ns/csvw#trim",
     "tableSchema": "http://www.w3.org/ns/csvw#tableSchema",
     "minLength": "http://www.w3.org/ns/csvw#minLength",
@@ -109,18 +109,18 @@
   },
   "member": [
     {
-      "@id": "http://localhost:8080/csvw/tables/5916b586-a7c2-4445-9321-b29a4a7a820d",
+      "@id": "http://localhost:8079/csvw/tables/5916b586-a7c2-4445-9321-b29a4a7a820d",
       "title": "simple_file.csv",
       "@type": "CSVWTableSummary"
     },
     {
-      "@id": "http://localhost:8080/csvw/tables/91213cdd-7ba3-4dfd-ae1c-62cb86d7579e",
+      "@id": "http://localhost:8079/csvw/tables/91213cdd-7ba3-4dfd-ae1c-62cb86d7579e",
       "title": "simple_file.csv",
       "@type": "CSVWTableSummary"
     }
   ],
-  "nextPage": "http://localhost:8080csvw/table-summaries?page=2",
+  "nextPage": "http://localhost:8079/csvw/table-summaries?page=2",
   "itemsPerPage": 10,
-  "firstPage": "http://localhost:8080csvw/table-summaries?page=1",
+  "firstPage": "http://localhost:8079/csvw/table-summaries?page=1",
   "@type": "CSVWTableSummaryPagedCollection"
 }

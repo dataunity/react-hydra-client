@@ -19,11 +19,6 @@ class HydraOperations extends Component {
 		return getSupportedOperations(this.props.supportedProperty)
 	}
 
-	// handleIriChange(evt) {
-	// 	console.log("Handling GET op", evt)
-	// 	// this.props.dispatch(fetchHydraDoc('http://localhost:8080/hydra/entrypoint'))
-	// }
-
 	handleGETClick(evt) {
 		const { frameId, dispatch } = this.props
 		evt.preventDefault()

@@ -864,7 +864,7 @@
       "@id": "rdfs:subClassOf"
     },
     "td": "http://iot.linkeddata.es/def/wot#",
-    "vocab": "http://localhost:8080/hydra/api-doc#",
+    "vocab": "http://localhost:8079/hydra/api-doc#",
     "code": "hydra:statusCode",
     "statusCodes": "hydra:statusCodes",
     "supportedProperty": "hydra:supportedProperty",

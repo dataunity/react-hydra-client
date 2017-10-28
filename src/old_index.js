@@ -82,10 +82,10 @@ if (process.env.NODE_ENV !== 'production') {
 // overrideHydraDocByClassComponents: overrides a Hydra Doc with a Component
 //  when the Hydra Doc matches the class given in the key
 const intialState = {
-	entryPoint: 'http://localhost:8080/hydra/entrypoint',
-	currentHydraAPIDoc: 'http://localhost:8080/hydra/api-doc',
+	entryPoint: 'http://localhost:8079/hydra/entrypoint',
+	currentHydraAPIDoc: 'http://localhost:8079/hydra/api-doc',
     // overrideHydraPropertyComponents: {
-    //     'http://localhost:8080/hydra/api-doc#EntryPoint/devicesummaries': TestHydraProperty
+    //     'http://localhost:8079/hydra/api-doc#EntryPoint/devicesummaries': TestHydraProperty
     // },
     overrideHydraDocByClassComponents: {
         'http://iot.linkeddata.es/def/wot#Thing': TestReplacementHydraDoc,
