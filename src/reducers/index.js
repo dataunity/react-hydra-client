@@ -16,7 +16,7 @@ import {
 } from '../actions'
 
 // Testing redux-form
-import { reducer as reduxFormReducer } from 'redux-form'
+// import { reducer as reduxFormReducer } from 'redux-form'
 import account from '../containers/account'
 
 // Whether to run the interface in advanced mode (with extra debug info)
@@ -180,7 +180,7 @@ const rootReducer = combineReducers({
   formByFrameId,
 
   // Testing for redux-form
-  form: reduxFormReducer,
+  // form: reduxFormReducer,
   account,
 
   // Testing for override components
