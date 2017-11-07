@@ -8,20 +8,19 @@ import { getTitle as getHydraTitle } from '../hydra/apidoc'
 import { dearrayify, getIdValue } from '../jsonld/helper'
 import ReduxFormDropzone from '../components/ReduxFormDropzone'
 
-// Testing
-import { load as loadAccount } from './account'
-
-const data = {
-  // used to populate "account" reducer when "Load" is clicked
-  firstName: 'Jane',
-  lastName: 'Doe',
-  age: '42',
-  sex: 'female',
-  employed: true,
-  favoriteColor: 'Blue',
-  bio: 'Born to write amazing Redux code.',
-}
-const colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet']
+// Testing - example of data loading
+// import { load as loadAccount } from './account'
+// const data = {
+//   // used to populate "account" reducer when "Load" is clicked
+//   firstName: 'Jane',
+//   lastName: 'Doe',
+//   age: '42',
+//   sex: 'female',
+//   employed: true,
+//   favoriteColor: 'Blue',
+//   bio: 'Born to write amazing Redux code.',
+// }
+// const colors = ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Indigo', 'Violet']
 
 class HydraForm extends Component {
 
@@ -38,7 +37,7 @@ class HydraForm extends Component {
     const fieldName = this.prepareFieldName(getIdValue(rdfProperty))
     const propertyRange = rdfProperty[RDFSNamespace.range]
     const propertyRangeIRI = propertyRange ? getIdValue(propertyRange) : ''
-    console.log("[HydraForm] createField", rdfProperty, propertyRangeIRI, propertyRange)
+    // console.log("[HydraForm] createField", rdfProperty, propertyRangeIRI, propertyRange)
 
     switch (propertyRangeIRI) {
       // Hack to specify File input field, need to find out how to do it in Hydra proper
@@ -59,6 +58,36 @@ class HydraForm extends Component {
 
   }
 
+  render() {
+    const { handleSubmit, load, pristine, reset, submitting } = this.props
+    const { expectedClass } = this.props
+    const suppProps = expectedClass[HydraNamespace.supportedProperty]
+
+    // Create field for each Hyrda Class property (from hydra:expects class).
+    // Populate field values with any values from current doc (if it's an method is PUT?)
+    return (
+      <form onSubmit={handleSubmit}>
+        <h2>Hydra Form</h2>
+        {suppProps &&
+          Object.keys(suppProps).map((prop, i) =>
+          <div key={i}>
+            <label>{getHydraTitle(suppProps[prop])}</label>
+            {this.createField(suppProps[prop])}
+          </div>
+        )}
+
+        <div>
+          <button type="submit" disabled={pristine || submitting}>Submit</button>
+          <button type="button" disabled={pristine || submitting} onClick={reset}>
+            Undo Changes
+          </button>
+        </div>
+      </form>
+    )
+  }
+
+  /*
+  OLD VERSION of render function with form data loading
   render() {
     const { handleSubmit, load, pristine, reset, submitting } = this.props
     const { expectedClass } = this.props
@@ -161,6 +190,7 @@ class HydraForm extends Component {
       </form>
     )
   }
+  */
 
 }
 
@@ -174,6 +204,15 @@ HydraForm = reduxForm({
   form: 'hydraForm', // a unique identifier for this form
 })(HydraForm)
 
+
+const mapStateToProps = (state, ownProps) => {
+  return {}
+}
+
+export default connect(mapStateToProps)(HydraForm)
+
+/*
+OLD VERSION - with example of data loading
 // You have to connect() to any reducers that you wish to connect to yourself
 HydraForm = connect(
   state => ({
@@ -183,3 +222,4 @@ HydraForm = connect(
 )(HydraForm)
 
 export default HydraForm
+*/

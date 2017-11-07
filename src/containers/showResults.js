@@ -1,5 +1,5 @@
 export default function showResults(values) {
-  window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`)
+    window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`)
 }
 
 // Build environment currently doesn't support async

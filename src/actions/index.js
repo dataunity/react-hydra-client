@@ -280,6 +280,8 @@ const fetchDocForFrame = (frameId, iri) => dispatch => {
     .then(response => response.json())
     .then(json => expandJsonld(json))
     .then(json => dispatch(receiveDocForFrame(frameId, json)))
+    .catch(err => alert(err))
+    // TODO: figure out better way to handle errors
 }
 
 const shouldFetchDocForFrame = (state, frameId) => {

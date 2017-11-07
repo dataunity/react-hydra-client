@@ -6,9 +6,25 @@ import { getLabel } from '../jsonld/helper'
 
 // Testing for redux-form
 import showResults from './showResults'
+import submitForm from '../util/forms'
 import HydraForm from './HydraForm'
 
 class HydraDoc extends Component {
+
+	constructor(props) {
+		super(props)
+
+		this.handleSubmit = this.handleSubmit.bind(this)
+	}
+
+	handleSubmit(data) {
+		const {
+			frameId,
+			formMethod,
+			formUrl,
+			formExpectedClass } = this.props
+		submitForm(data)
+	}
 
 	renderComponent() {
 		const { hydraDoc,
@@ -43,7 +59,7 @@ class HydraDoc extends Component {
 				<h2>{getLabel(supportedClass)}</h2>
 
 				<HydraForm form={'form-' + frameId}
-					onSubmit={showResults}
+					onSubmit={this.handleSubmit}
 					formMethod={formMethod}
 					formUrl={formUrl}
 					expectedClass={formExpectedClass} />

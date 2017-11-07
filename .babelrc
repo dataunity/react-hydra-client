@@ -2,7 +2,11 @@
   "presets": ["es2015-no-commonjs", "react", "stage-2"],
   "env": {
     "development": {
-      "plugins": ["lodash", "transform-es2015-modules-commonjs"]
+      "plugins": [
+          "lodash",
+          "transform-es2015-modules-commonjs",
+          "transform-async-to-generator"
+      ]
     },
     "test": {
       "plugins": [
@@ -13,10 +17,14 @@
       ]
     },
     "production": {
-      "plugins": ["lodash", "transform-es2015-modules-commonjs"]
+      "plugins": [
+          "lodash",
+          "transform-es2015-modules-commonjs",
+          "transform-async-to-generator"
+      ]
     },
     "es": {
-      "plugins": ["lodash", "./babel-lodash-es"]
+      "plugins": ["lodash", "./babel-lodash-es", "transform-async-to-generator"]
     }
   }
 }

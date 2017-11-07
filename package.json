@@ -1,6 +1,6 @@
 {
   "name": "react-hydra-client",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "ReactJS Hydra client component",
   "main": "./lib/index.js",
   "module": "./es/index.js",
@@ -59,6 +59,7 @@
     "babel-plugin-istanbul": "^4.1.1",
     "babel-plugin-lodash": "^3.2.11",
     "babel-plugin-syntax-async-functions": "^6.13.0",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
     "babel-plugin-transform-react-jsx-source": "^6.22.0",
     "babel-plugin-transform-regenerator": "^6.26.0",
