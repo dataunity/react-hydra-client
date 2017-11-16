@@ -30,7 +30,7 @@ export default function submitForm(data) {
             if (filelistKeys.indexOf(key) > -1) {
                 // Add files
                 for (var i = 0; i < val.length; i++) {
-                    console.log("File", val[i]);
+                    console.log("File", val[i])
                     body.append(key, val[i])
                 }
             } else {

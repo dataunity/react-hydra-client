@@ -8,6 +8,11 @@ import {
 } from '../actions'
 import IRIEntry from '../components/IRIEntry'
 import HydraFrame from './HydraFrame'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 
 class HydraApp extends Component {
     constructor(props) {
@@ -59,6 +64,10 @@ class HydraApp extends Component {
         .then(response => console.log('Logged in'))
   }
 
+  hydraFrame() {
+      return
+  }
+
   render() {
     const { currentHydraAPIDoc,
         isFetching,
@@ -69,6 +78,7 @@ class HydraApp extends Component {
     const isEmpty = !apiDoc["@type"]
 
     return (
+        <Router>
       <div>
         {advancedMode &&
             <div>
@@ -96,11 +106,25 @@ class HydraApp extends Component {
           {isEmpty
             ? (isFetching ? <h2>Loading...</h2> : <h2>Empty.</h2>)
             : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-                <HydraFrame frameId="main" apiDoc={apiDoc} defaultIri={entryPoint} />
+                <Link to="/">Home</Link>
+
+                <Route exact path="/" render={(props) => (
+                    <HydraFrame frameId="main" apiDoc={apiDoc} defaultIri={entryPoint} />
+                )}/>
+                <Route path='/view' render={(props) => {
+                    const params = new URLSearchParams(props.location.search)
+                    const iri = params.get('iri')
+                    if (!iri) {
+                        throw new Error("Not a valid view URL, missing iri parameter.")
+                    }
+                    return (<HydraFrame frameId="main" apiDoc={apiDoc} defaultIri={iri} />)
+                }}/>
+
               </div>
           }
         </div>
-      </div>)
+      </div>
+    </Router>)
   }
 }
 

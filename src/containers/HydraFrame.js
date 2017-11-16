@@ -84,7 +84,6 @@ class HydraFrame extends Component {
         frameId,
         apiDocClass,
         apiDoc,
-        defaultIri,
         advancedMode } = this.props
     const isEmpty = this.isHydraDocEmpty()
     const isCollectn = this.isCollection()
