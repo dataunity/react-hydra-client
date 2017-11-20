@@ -21,5 +21,6 @@ export const HydraNamespace = {
 const hydraExtBase = 'http://dataunity.org/ns/hydra-ext#'
 export const HydraExtNamespace = {
     _base: hydraExtBase,
-    inputTypeFileUpload: hydraExtBase + "inputTypeFileUpload"
+    inputTypeFileUpload: hydraExtBase + "inputTypeFileUpload",
+    externalLink: hydraExtBase + "externalLink"
 }
