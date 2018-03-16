@@ -4,7 +4,11 @@ import { connect } from 'react-redux'
 import { getLabel, getLiteralValue, getIdValue } from '../jsonld/helper'
 import { getSupportedOperations, findSupportedClass } from '../hydra/apidoc'
 import { HydraNamespace, HydraExtNamespace } from '../namespaces/Hydra'
-import { changeIRIForFrame, setFormForFrame } from '../actions'
+import { changeIRIForFrame,
+	invalidateFrame,
+	setFormForFrame,
+	dontUseRoutesForFrame } from '../actions'
+import { withRouter, Link } from 'react-router-dom'
 
 class HydraOperations extends Component {
 
@@ -22,7 +26,11 @@ class HydraOperations extends Component {
 	handleGETClick(evt) {
 		const { frameId, dispatch } = this.props
 		evt.preventDefault()
+		// Navigate by actions rather than Routes (don't use Route urls anymore)
+	    dispatch(dontUseRoutesForFrame(frameId))
+
 		dispatch(changeIRIForFrame(frameId, evt.target.href))
+		dispatch(invalidateFrame(frameId))
 	}
 
 	handlePOSTClick(method, formUrl, expectedClassIRI) {
@@ -35,7 +43,7 @@ class HydraOperations extends Component {
 	}
 
 	createOpElement(op, val, index) {
-		const { advancedMode } = this.props
+		const { useRoutes, advancedMode } = this.props
 		const formMethod = getLiteralValue(op, HydraNamespace.method, ""),
 			returns = op[HydraNamespace.returns],
 			label = getLabel(op)
@@ -56,18 +64,34 @@ class HydraOperations extends Component {
 
 		switch (formMethod) {
 			case "GET":
-				return <span key={index}>
-						{isExternalLink
-							? <a href={url} target="_blank">{label}</a>
+				if (isExternalLink) {
+					return <span key={index}>
+						<a href={url} target="_blank">{label}</a>
+						{advancedMode && ' (GET)'}
+					</span>
+				} else {
+					return <span key={index}>
+						{useRoutes
+							? <Link to={{
+									pathname: '/view',
+									search: '?iri=' + encodeURIComponent(url)
+								}}>{label}</Link>
 							: <a onClick={this.handleGETClick} href={url}>{label}</a>
 						}
 						{advancedMode && ' (GET)'}
 					</span>
-				// return (
-				// 	<div key={i}>
-				// 		<span>GET Op {getLabel(op)}</span>
-				// 		<span onClick={e => this.handleIriChange(e)}>Click</span>
-				// 	</div>)
+				}
+				// return <span key={index}>
+				// 		{isExternalLink
+				// 			? <a href={url} target="_blank">{label}</a>
+				// 			: <div> <a onClick={this.handleGETClick} href={url}>{label}</a> <Link to={{
+				// 				  pathname: '/view',
+				// 				  search: '?iri=' + encodeURIComponent(url)
+				// 			  }}>{label}</Link> </div>
+				// 		}
+				// 		{advancedMode && ' (GET)'}
+				// 	</span>
+
 			case "POST":
 				return <span key={index}>
 					<a onClick={e => {e.preventDefault(); this.handlePOSTClick(formMethod, url, getIdValue(op[HydraNamespace.expects]))}} href={url}>{getLabel(op)}</a>
@@ -97,17 +121,22 @@ HydraOperations.propTypes = {
 	supportedProperty: PropTypes.object,
 	frameId: PropTypes.string.isRequired,
 	dispatch: PropTypes.func.isRequired,
-	advancedMode: PropTypes.bool.isRequired
+	advancedMode: PropTypes.bool.isRequired,
+	useRoutes: PropTypes.bool.isRequired
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state, ownProps) => {
+	const { frameId } = ownProps
 	const { hydraAPIDoc,
-	 	advancedMode } = state.hydra
+	 	advancedMode,
+		hydraDocByFrameId } = state.hydra
 	const apiDoc = hydraAPIDoc.content
+	const useRoutes = hydraDocByFrameId[frameId].useRoutes
 
 	return {
 		apiDoc,
-		advancedMode
+		advancedMode,
+		useRoutes
 	}
 }
 

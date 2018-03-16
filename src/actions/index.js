@@ -208,15 +208,25 @@ export const removeFormForFrame = frameId => ({
   frameId
 })
 
+
+
 // Hydra Browsing by Frame
 
 export const REQUEST_DOC_FOR_FRAME = 'REQUEST_DOC_FOR_FRAME'
 export const RECEIVE_DOC_FOR_FRAME = 'RECEIVE_DOC_FOR_FRAME'
 export const INVALIDATE_FRAME = 'INVALIDATE_FRAME'
 export const CHANGE_IRI_FOR_FRAME = 'CHANGE_IRI_FOR_FRAME'
+export const DONT_USE_ROUTES_FOR_FRAME = 'DONT_USE_ROUTES_FOR_FRAME'
+
+export const dontUseRoutesForFrame = frameId => ({
+  type: DONT_USE_ROUTES_FOR_FRAME,
+  frameId
+})
 
 export const changeIRIForFrame = (frameId, iri) => (dispatch, getState) => {
   dispatch(removeFormForFrame(frameId))
+
+  // Change IRI
   dispatch({
     type: CHANGE_IRI_FOR_FRAME,
     frameId,
@@ -284,11 +294,17 @@ const fetchDocForFrame = (frameId, iri) => dispatch => {
     // TODO: figure out better way to handle errors
 }
 
-const shouldFetchDocForFrame = (state, frameId) => {
+const shouldFetchDocForFrame = (state, frameId, iri) => {
   const docInfo = state.hydraDocByFrameId[frameId]
   if (!docInfo) {
     return true
   }
+  // const currentIRI = state.currentIRIForFrame[frameId]
+  // console.log("[actions] shouldFetchDocForFrame()", currentIRI, iri)
+  // if (currentIRI && iri !== currentIRI) {
+  //     dispatch(changeIRIForFrame(frameId, iri))
+  //     return true
+  // }
   if (docInfo.isFetching) {
     return false
   }
@@ -296,7 +312,7 @@ const shouldFetchDocForFrame = (state, frameId) => {
 }
 
 export const fetchDocForFrameIfNeeded = (frameId, iri) => (dispatch, getState) => {
-  if (shouldFetchDocForFrame(getState().hydra, frameId)) {
+  if (shouldFetchDocForFrame(getState().hydra, frameId, iri)) {
     return dispatch(fetchDocForFrame(frameId, iri))
   }
 }

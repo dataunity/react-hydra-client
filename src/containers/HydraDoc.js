@@ -8,6 +8,7 @@ import { getLabel } from '../jsonld/helper'
 import showResults from './showResults'
 import submitForm from '../util/forms'
 import HydraForm from './HydraForm'
+import { withRouter } from 'react-router-dom'
 
 class HydraDoc extends Component {
 
@@ -140,4 +141,4 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps)(HydraDoc)
+export default withRouter(connect(mapStateToProps)(HydraDoc))

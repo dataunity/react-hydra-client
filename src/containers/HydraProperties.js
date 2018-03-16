@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import HydraProperty from '../components/HydraProperty'
 import { dearrayify } from '../jsonld/helper'
 import { findSupportedPropertyInClass } from '../hydra/apidoc'
+import { withRouter } from 'react-router-dom'
 
 class HydraProperties extends Component {
 
@@ -57,4 +58,4 @@ function mapStateToProps(state) {
 	}
 }
 
-export default connect(mapStateToProps)(HydraProperties)
+export default withRouter(connect(mapStateToProps)(HydraProperties))

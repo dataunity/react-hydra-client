@@ -12,7 +12,8 @@ import {
 import {
   CHANGE_IRI_FOR_FRAME, INVALIDATE_FRAME,
   REQUEST_DOC_FOR_FRAME, RECEIVE_DOC_FOR_FRAME,
-  SET_FORM_FOR_FRAME, REMOVE_FORM_FOR_FRAME
+  SET_FORM_FOR_FRAME, REMOVE_FORM_FOR_FRAME,
+  DONT_USE_ROUTES_FOR_FRAME
 } from '../actions'
 
 // Testing redux-form
@@ -38,10 +39,11 @@ const currentHydraAPIDoc = (state = '', action) => {
 }
 
 const processHydraDoc = (state = {
-  isFetching: false,
-  didInvalidate: false,
-  content: {}
-  // items: []
+    iri: null,
+    isFetching: false,
+    didInvalidate: false,
+    useRoutes: true,
+    content: {}
 }, action) => {
   switch (action.type) {
     // case INVALIDATE_HYDRA_DOC:
@@ -71,6 +73,11 @@ const processHydraDoc = (state = {
         // items: action.posts,
         lastUpdated: action.receivedAt
       }
+    case DONT_USE_ROUTES_FOR_FRAME:
+        return {
+            ...state,
+            useRoutes: false
+        }
     default:
       return state
   }
@@ -120,6 +127,7 @@ const hydraDocByFrameId = (state = { }, action) => {
     case INVALIDATE_FRAME:
     case RECEIVE_DOC_FOR_FRAME:
     case REQUEST_DOC_FOR_FRAME:
+    case DONT_USE_ROUTES_FOR_FRAME:
       return {
         ...state,
         [action.frameId]: processHydraDoc(state[action.frameId], action)
